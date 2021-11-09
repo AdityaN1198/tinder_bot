@@ -13,8 +13,8 @@ def predict_rating(user_image):
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
     faces = face_cascade.detectMultiScale(gray,1.1,4)
-    print(faces)
-    print(img.shape)
+    #print(faces)
+    #print(img.shape)
     for (x,y,w,h) in faces:
         #cv.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
         crop_img = img[y-30:y+h+30,x-30:x+w+30]
@@ -29,7 +29,7 @@ def predict_rating(user_image):
 
 
 
-    print(model.summary())
+    #print(model.summary())
 
     img = 'croped.png'
 
