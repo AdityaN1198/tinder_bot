@@ -25,9 +25,11 @@ if img:
     img = cv.cvtColor(img,0)
     st.image(img)
     rating = (predict_rating(img))
-    rating = float(rating)
-    if type(rating) is float:
-        st.markdown('## Your Rating is {:.2f} out of 5'.format(rating))
-
-    else:
+    try:
+        rating = float(rating)
+        if type(rating) is float:
+            st.markdown('## Your Rating is {:.2f} out of 5'.format(rating))
+    except ValueError:
+        pass
         st.markdown('## {}'.format(rating))
+
