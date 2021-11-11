@@ -79,4 +79,4 @@ def predict_rating(user_image,read_from= None,debugging='off'):
     #os.remove('croped.png')
     return  (prediction[0][0])
 
-print(predict_rating('tyagi2.jpeg',read_from='disk',debugging='off'))
+#print(predict_rating('tyagi2.jpeg',read_from='disk',debugging='off'))
