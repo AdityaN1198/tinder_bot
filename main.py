@@ -31,11 +31,14 @@ def predict_rating(user_image,read_from= None,debugging='off'):
         while crop_size>0:
             try:
                 crop_img = img[y-crop_size:y+h+crop_size,x-crop_size:x+w+crop_size]
+                crop_img = cv.cvtColor(crop_img, 0)
                 #cv.imwrite('croped.png',crop_img)
                 break
             except cv.error:
-                crop_size -= 10
-
+                if crop_size>10:
+                    crop_size -= 10
+                else:
+                    crop_size -= 1
         if debugging == 'on':
             cv.imshow('img', crop_img)
             #cv.imshow('org',img)
@@ -43,7 +46,7 @@ def predict_rating(user_image,read_from= None,debugging='off'):
         break
 
 
-    model = tf.keras.models.load_model('resmod.h5')
+    model = tf.keras.models.load_model('resmod2.h5')
 
 
 
@@ -52,7 +55,7 @@ def predict_rating(user_image,read_from= None,debugging='off'):
     #img = 'croped.png'
 
     try:
-        crop_img = cv.cvtColor(crop_img,0)
+
         rgb = cv.cvtColor(crop_img, cv.COLOR_BGR2RGB)
         rgb_tensor = tf.convert_to_tensor(rgb, dtype=tf.float32)
         rgb_tensor = tf.expand_dims(rgb_tensor, 0)
@@ -79,4 +82,4 @@ def predict_rating(user_image,read_from= None,debugging='off'):
     #os.remove('croped.png')
     return  (prediction[0][0])
 
-#print(predict_rating('tyagi2.jpeg',read_from='disk',debugging='off'))
+#print(predict_rating('mohit.png',read_from='disk',debugging='on'))
