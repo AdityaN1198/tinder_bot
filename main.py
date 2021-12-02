@@ -80,6 +80,6 @@ def predict_rating(user_image,read_from= None,debugging='off'):
     prediction = model.predict(rgb_tensor)
 
     #os.remove('croped.png')
-    return  (prediction[0][0])
+    return  min(prediction[0][0],5)
 
 #print(predict_rating('mohit.png',read_from='disk',debugging='on'))
